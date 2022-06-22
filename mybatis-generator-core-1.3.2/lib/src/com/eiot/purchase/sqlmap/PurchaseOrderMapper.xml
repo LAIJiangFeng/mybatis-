@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eiot.purchase.dao.PurchaseOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.eiot.purchase.model.PurchaseOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="supplier_no" property="supplierNo" jdbcType="VARCHAR" />
+    <result column="gas_product" property="gasProduct" jdbcType="VARCHAR" />
+    <result column="document_no" property="documentNo" jdbcType="VARCHAR" />
+    <result column="gas_source_location" property="gasSourceLocation" jdbcType="VARCHAR" />
+    <result column="car_number" property="carNumber" jdbcType="VARCHAR" />
+    <result column="driver" property="driver" jdbcType="VARCHAR" />
+    <result column="loading_time" property="loadingTime" jdbcType="VARCHAR" />
+    <result column="tare" property="tare" jdbcType="DOUBLE" />
+    <result column="gross_weight" property="grossWeight" jdbcType="DOUBLE" />
+    <result column="net_weight" property="netWeight" jdbcType="DOUBLE" />
+    <result column="unloading_time" property="unloadingTime" jdbcType="VARCHAR" />
+    <result column="unloading_tare" property="unloadingTare" jdbcType="DOUBLE" />
+    <result column="unloading_gross_weight" property="unloadingGrossWeight" jdbcType="DOUBLE" />
+    <result column="settlement_method" property="settlementMethod" jdbcType="VARCHAR" />
+    <result column="settlement_volume" property="settlementVolume" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, supplier_no, gas_product, document_no, gas_source_location, car_number, driver, 
+    loading_time, tare, gross_weight, net_weight, unloading_time, unloading_tare, unloading_gross_weight, 
+    settlement_method, settlement_volume
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_purchase_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_purchase_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.eiot.purchase.model.PurchaseOrder" >
+    insert into t_purchase_order (id, supplier_no, gas_product, 
+      document_no, gas_source_location, car_number, 
+      driver, loading_time, tare, 
+      gross_weight, net_weight, unloading_time, 
+      unloading_tare, unloading_gross_weight, settlement_method, 
+      settlement_volume)
+    values (#{id,jdbcType=INTEGER}, #{supplierNo,jdbcType=VARCHAR}, #{gasProduct,jdbcType=VARCHAR}, 
+      #{documentNo,jdbcType=VARCHAR}, #{gasSourceLocation,jdbcType=VARCHAR}, #{carNumber,jdbcType=VARCHAR}, 
+      #{driver,jdbcType=VARCHAR}, #{loadingTime,jdbcType=VARCHAR}, #{tare,jdbcType=DOUBLE}, 
+      #{grossWeight,jdbcType=DOUBLE}, #{netWeight,jdbcType=DOUBLE}, #{unloadingTime,jdbcType=VARCHAR}, 
+      #{unloadingTare,jdbcType=DOUBLE}, #{unloadingGrossWeight,jdbcType=DOUBLE}, #{settlementMethod,jdbcType=VARCHAR}, 
+      #{settlementVolume,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.eiot.purchase.model.PurchaseOrder" >
+    insert into t_purchase_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="supplierNo != null" >
+        supplier_no,
+      </if>
+      <if test="gasProduct != null" >
+        gas_product,
+      </if>
+      <if test="documentNo != null" >
+        document_no,
+      </if>
+      <if test="gasSourceLocation != null" >
+        gas_source_location,
+      </if>
+      <if test="carNumber != null" >
+        car_number,
+      </if>
+      <if test="driver != null" >
+        driver,
+      </if>
+      <if test="loadingTime != null" >
+        loading_time,
+      </if>
+      <if test="tare != null" >
+        tare,
+      </if>
+      <if test="grossWeight != null" >
+        gross_weight,
+      </if>
+      <if test="netWeight != null" >
+        net_weight,
+      </if>
+      <if test="unloadingTime != null" >
+        unloading_time,
+      </if>
+      <if test="unloadingTare != null" >
+        unloading_tare,
+      </if>
+      <if test="unloadingGrossWeight != null" >
+        unloading_gross_weight,
+      </if>
+      <if test="settlementMethod != null" >
+        settlement_method,
+      </if>
+      <if test="settlementVolume != null" >
+        settlement_volume,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="supplierNo != null" >
+        #{supplierNo,jdbcType=VARCHAR},
+      </if>
+      <if test="gasProduct != null" >
+        #{gasProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="documentNo != null" >
+        #{documentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="gasSourceLocation != null" >
+        #{gasSourceLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="carNumber != null" >
+        #{carNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="driver != null" >
+        #{driver,jdbcType=VARCHAR},
+      </if>
+      <if test="loadingTime != null" >
+        #{loadingTime,jdbcType=VARCHAR},
+      </if>
+      <if test="tare != null" >
+        #{tare,jdbcType=DOUBLE},
+      </if>
+      <if test="grossWeight != null" >
+        #{grossWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="netWeight != null" >
+        #{netWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="unloadingTime != null" >
+        #{unloadingTime,jdbcType=VARCHAR},
+      </if>
+      <if test="unloadingTare != null" >
+        #{unloadingTare,jdbcType=DOUBLE},
+      </if>
+      <if test="unloadingGrossWeight != null" >
+        #{unloadingGrossWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="settlementMethod != null" >
+        #{settlementMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementVolume != null" >
+        #{settlementVolume,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.eiot.purchase.model.PurchaseOrder" >
+    update t_purchase_order
+    <set >
+      <if test="supplierNo != null" >
+        supplier_no = #{supplierNo,jdbcType=VARCHAR},
+      </if>
+      <if test="gasProduct != null" >
+        gas_product = #{gasProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="documentNo != null" >
+        document_no = #{documentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="gasSourceLocation != null" >
+        gas_source_location = #{gasSourceLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="carNumber != null" >
+        car_number = #{carNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="driver != null" >
+        driver = #{driver,jdbcType=VARCHAR},
+      </if>
+      <if test="loadingTime != null" >
+        loading_time = #{loadingTime,jdbcType=VARCHAR},
+      </if>
+      <if test="tare != null" >
+        tare = #{tare,jdbcType=DOUBLE},
+      </if>
+      <if test="grossWeight != null" >
+        gross_weight = #{grossWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="netWeight != null" >
+        net_weight = #{netWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="unloadingTime != null" >
+        unloading_time = #{unloadingTime,jdbcType=VARCHAR},
+      </if>
+      <if test="unloadingTare != null" >
+        unloading_tare = #{unloadingTare,jdbcType=DOUBLE},
+      </if>
+      <if test="unloadingGrossWeight != null" >
+        unloading_gross_weight = #{unloadingGrossWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="settlementMethod != null" >
+        settlement_method = #{settlementMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementVolume != null" >
+        settlement_volume = #{settlementVolume,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.eiot.purchase.model.PurchaseOrder" >
+    update t_purchase_order
+    set supplier_no = #{supplierNo,jdbcType=VARCHAR},
+      gas_product = #{gasProduct,jdbcType=VARCHAR},
+      document_no = #{documentNo,jdbcType=VARCHAR},
+      gas_source_location = #{gasSourceLocation,jdbcType=VARCHAR},
+      car_number = #{carNumber,jdbcType=VARCHAR},
+      driver = #{driver,jdbcType=VARCHAR},
+      loading_time = #{loadingTime,jdbcType=VARCHAR},
+      tare = #{tare,jdbcType=DOUBLE},
+      gross_weight = #{grossWeight,jdbcType=DOUBLE},
+      net_weight = #{netWeight,jdbcType=DOUBLE},
+      unloading_time = #{unloadingTime,jdbcType=VARCHAR},
+      unloading_tare = #{unloadingTare,jdbcType=DOUBLE},
+      unloading_gross_weight = #{unloadingGrossWeight,jdbcType=DOUBLE},
+      settlement_method = #{settlementMethod,jdbcType=VARCHAR},
+      settlement_volume = #{settlementVolume,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

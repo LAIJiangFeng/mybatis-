@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eiot.device.dao.DeviceLedgerMapper" >
+  <resultMap id="BaseResultMap" type="com.eiot.device.model.DeviceLedger" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="device_code" property="deviceCode" jdbcType="VARCHAR" />
+    <result column="device_type" property="deviceType" jdbcType="VARCHAR" />
+    <result column="device_name" property="deviceName" jdbcType="VARCHAR" />
+    <result column="specification_and_model" property="specificationAndModel" jdbcType="VARCHAR" />
+    <result column="maintenance_cycle" property="maintenanceCycle" jdbcType="INTEGER" />
+    <result column="next_inspection_date" property="nextInspectionDate" jdbcType="VARCHAR" />
+    <result column="last_overhaul_date" property="lastOverhaulDate" jdbcType="VARCHAR" />
+    <result column="overhaul_man" property="overhaulMan" jdbcType="VARCHAR" />
+    <result column="technical_parameter" property="technicalParameter" jdbcType="VARCHAR" />
+    <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
+    <result column="manufacturer_contact_address" property="manufacturerContactAddress" jdbcType="VARCHAR" />
+    <result column="manufacturer_contact" property="manufacturerContact" jdbcType="VARCHAR" />
+    <result column="manufacturer_phone_one" property="manufacturerPhoneOne" jdbcType="VARCHAR" />
+    <result column="manufacturer_phone_two" property="manufacturerPhoneTwo" jdbcType="VARCHAR" />
+    <result column="install_date" property="installDate" jdbcType="VARCHAR" />
+    <result column="safety_officer" property="safetyOfficer" jdbcType="VARCHAR" />
+    <result column="use_date" property="useDate" jdbcType="VARCHAR" />
+    <result column="asset_value" property="assetValue" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="company_code" property="companyCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, device_code, device_type, device_name, specification_and_model, maintenance_cycle, 
+    next_inspection_date, last_overhaul_date, overhaul_man, technical_parameter, manufacturer, 
+    manufacturer_contact_address, manufacturer_contact, manufacturer_phone_one, manufacturer_phone_two, 
+    install_date, safety_officer, use_date, asset_value, remark, company_code
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_device_ledger
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_device_ledger
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.eiot.device.model.DeviceLedger" >
+    insert into t_device_ledger (id, device_code, device_type, 
+      device_name, specification_and_model, maintenance_cycle, 
+      next_inspection_date, last_overhaul_date, overhaul_man, 
+      technical_parameter, manufacturer, manufacturer_contact_address, 
+      manufacturer_contact, manufacturer_phone_one, 
+      manufacturer_phone_two, install_date, safety_officer, 
+      use_date, asset_value, remark, 
+      company_code)
+    values (#{id,jdbcType=INTEGER}, #{deviceCode,jdbcType=VARCHAR}, #{deviceType,jdbcType=VARCHAR}, 
+      #{deviceName,jdbcType=VARCHAR}, #{specificationAndModel,jdbcType=VARCHAR}, #{maintenanceCycle,jdbcType=INTEGER}, 
+      #{nextInspectionDate,jdbcType=VARCHAR}, #{lastOverhaulDate,jdbcType=VARCHAR}, #{overhaulMan,jdbcType=VARCHAR}, 
+      #{technicalParameter,jdbcType=VARCHAR}, #{manufacturer,jdbcType=VARCHAR}, #{manufacturerContactAddress,jdbcType=VARCHAR}, 
+      #{manufacturerContact,jdbcType=VARCHAR}, #{manufacturerPhoneOne,jdbcType=VARCHAR}, 
+      #{manufacturerPhoneTwo,jdbcType=VARCHAR}, #{installDate,jdbcType=VARCHAR}, #{safetyOfficer,jdbcType=VARCHAR}, 
+      #{useDate,jdbcType=VARCHAR}, #{assetValue,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{companyCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.eiot.device.model.DeviceLedger" >
+    insert into t_device_ledger
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="deviceCode != null" >
+        device_code,
+      </if>
+      <if test="deviceType != null" >
+        device_type,
+      </if>
+      <if test="deviceName != null" >
+        device_name,
+      </if>
+      <if test="specificationAndModel != null" >
+        specification_and_model,
+      </if>
+      <if test="maintenanceCycle != null" >
+        maintenance_cycle,
+      </if>
+      <if test="nextInspectionDate != null" >
+        next_inspection_date,
+      </if>
+      <if test="lastOverhaulDate != null" >
+        last_overhaul_date,
+      </if>
+      <if test="overhaulMan != null" >
+        overhaul_man,
+      </if>
+      <if test="technicalParameter != null" >
+        technical_parameter,
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer,
+      </if>
+      <if test="manufacturerContactAddress != null" >
+        manufacturer_contact_address,
+      </if>
+      <if test="manufacturerContact != null" >
+        manufacturer_contact,
+      </if>
+      <if test="manufacturerPhoneOne != null" >
+        manufacturer_phone_one,
+      </if>
+      <if test="manufacturerPhoneTwo != null" >
+        manufacturer_phone_two,
+      </if>
+      <if test="installDate != null" >
+        install_date,
+      </if>
+      <if test="safetyOfficer != null" >
+        safety_officer,
+      </if>
+      <if test="useDate != null" >
+        use_date,
+      </if>
+      <if test="assetValue != null" >
+        asset_value,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="companyCode != null" >
+        company_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="deviceCode != null" >
+        #{deviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null" >
+        #{deviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceName != null" >
+        #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="specificationAndModel != null" >
+        #{specificationAndModel,jdbcType=VARCHAR},
+      </if>
+      <if test="maintenanceCycle != null" >
+        #{maintenanceCycle,jdbcType=INTEGER},
+      </if>
+      <if test="nextInspectionDate != null" >
+        #{nextInspectionDate,jdbcType=VARCHAR},
+      </if>
+      <if test="lastOverhaulDate != null" >
+        #{lastOverhaulDate,jdbcType=VARCHAR},
+      </if>
+      <if test="overhaulMan != null" >
+        #{overhaulMan,jdbcType=VARCHAR},
+      </if>
+      <if test="technicalParameter != null" >
+        #{technicalParameter,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null" >
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturerContactAddress != null" >
+        #{manufacturerContactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturerContact != null" >
+        #{manufacturerContact,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturerPhoneOne != null" >
+        #{manufacturerPhoneOne,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturerPhoneTwo != null" >
+        #{manufacturerPhoneTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="installDate != null" >
+        #{installDate,jdbcType=VARCHAR},
+      </if>
+      <if test="safetyOfficer != null" >
+        #{safetyOfficer,jdbcType=VARCHAR},
+      </if>
+      <if test="useDate != null" >
+        #{useDate,jdbcType=VARCHAR},
+      </if>
+      <if test="assetValue != null" >
+        #{assetValue,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCode != null" >
+        #{companyCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.eiot.device.model.DeviceLedger" >
+    update t_device_ledger
+    <set >
+      <if test="deviceCode != null" >
+        device_code = #{deviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null" >
+        device_type = #{deviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceName != null" >
+        device_name = #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="specificationAndModel != null" >
+        specification_and_model = #{specificationAndModel,jdbcType=VARCHAR},
+      </if>
+      <if test="maintenanceCycle != null" >
+        maintenance_cycle = #{maintenanceCycle,jdbcType=INTEGER},
+      </if>
+      <if test="nextInspectionDate != null" >
+        next_inspection_date = #{nextInspectionDate,jdbcType=VARCHAR},
+      </if>
+      <if test="lastOverhaulDate != null" >
+        last_overhaul_date = #{lastOverhaulDate,jdbcType=VARCHAR},
+      </if>
+      <if test="overhaulMan != null" >
+        overhaul_man = #{overhaulMan,jdbcType=VARCHAR},
+      </if>
+      <if test="technicalParameter != null" >
+        technical_parameter = #{technicalParameter,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturerContactAddress != null" >
+        manufacturer_contact_address = #{manufacturerContactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturerContact != null" >
+        manufacturer_contact = #{manufacturerContact,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturerPhoneOne != null" >
+        manufacturer_phone_one = #{manufacturerPhoneOne,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturerPhoneTwo != null" >
+        manufacturer_phone_two = #{manufacturerPhoneTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="installDate != null" >
+        install_date = #{installDate,jdbcType=VARCHAR},
+      </if>
+      <if test="safetyOfficer != null" >
+        safety_officer = #{safetyOfficer,jdbcType=VARCHAR},
+      </if>
+      <if test="useDate != null" >
+        use_date = #{useDate,jdbcType=VARCHAR},
+      </if>
+      <if test="assetValue != null" >
+        asset_value = #{assetValue,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCode != null" >
+        company_code = #{companyCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.eiot.device.model.DeviceLedger" >
+    update t_device_ledger
+    set device_code = #{deviceCode,jdbcType=VARCHAR},
+      device_type = #{deviceType,jdbcType=VARCHAR},
+      device_name = #{deviceName,jdbcType=VARCHAR},
+      specification_and_model = #{specificationAndModel,jdbcType=VARCHAR},
+      maintenance_cycle = #{maintenanceCycle,jdbcType=INTEGER},
+      next_inspection_date = #{nextInspectionDate,jdbcType=VARCHAR},
+      last_overhaul_date = #{lastOverhaulDate,jdbcType=VARCHAR},
+      overhaul_man = #{overhaulMan,jdbcType=VARCHAR},
+      technical_parameter = #{technicalParameter,jdbcType=VARCHAR},
+      manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      manufacturer_contact_address = #{manufacturerContactAddress,jdbcType=VARCHAR},
+      manufacturer_contact = #{manufacturerContact,jdbcType=VARCHAR},
+      manufacturer_phone_one = #{manufacturerPhoneOne,jdbcType=VARCHAR},
+      manufacturer_phone_two = #{manufacturerPhoneTwo,jdbcType=VARCHAR},
+      install_date = #{installDate,jdbcType=VARCHAR},
+      safety_officer = #{safetyOfficer,jdbcType=VARCHAR},
+      use_date = #{useDate,jdbcType=VARCHAR},
+      asset_value = #{assetValue,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      company_code = #{companyCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
